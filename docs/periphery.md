@@ -1,7 +1,7 @@
-# Установка перифирии
+# Установка акселерометра
 ## Настройка Raspberry
 
-Для использования GPIO портов и шин i2c, spi Управляющей платы необходимо ее дополнительно настроить.
+Для использования GPIO портов и шин i2c, spi управляющей платы необходима дополнительная настройка.
 
 Устанавливаем скрипт
 ```
@@ -17,6 +17,7 @@ make menuconfig
 
 В появившемся меню для параметра `Microcontroller Architecture` устанавливаем `Linux process` 
 ![Screenshot](img/Klipper_config_MCU.png)
+
 Выходим и сохраняем `Q`
 
 Затем устанавливаем скомпилированный код
@@ -29,6 +30,7 @@ sudo service klipper start
 
 ### Активируем интерфейс SPI
 Шина SPI используется для подключения акселерометра
+
 * Запускаем конфигуратор управляющей платы
 ```
 sudo raspi-config
@@ -37,8 +39,10 @@ sudo raspi-config
 ![Screenshot](img/RPi_Configurator_SPI_1.png)
 * Выбираем интерфейс `SPI`
 ![Screenshot](img/RPi_Configurator_SPI_2.png)
-* Соглашаемся с активацией
+* Соглашаемся с активацией 
+
 ![Screenshot](img/RPi_Configurator_SPI_3.png)
+
 * Выходим
 
 
@@ -46,18 +50,20 @@ sudo raspi-config
 
 
 Устанавливаем необходимые библиотеки
-```
+```shell
 ~/klippy-env/bin/pip install -v numpy
 ```
 Устанавливаем дополнительные зависимости
-```
+```shell
 sudo apt update
 sudo apt install python3-numpy python3-matplotlib libatlas-base-dev libopenblas-dev
 ```
 
+
+
 Добавляем в `print.cfg`
 
-```printer.cfg
+```cfg title='print.cfg'
 [mcu rpi]
 serial: /tmp/klipper_host_mcu
 
@@ -78,13 +84,19 @@ probe_points:
 
 Рекомендуемая схема подключения:
 
-| ADXL345 пин   | RasbberryPi пин | название пина RasbberryPi    |
-|:--------------|:----------------|:-----------------------------|
-| 3V3 (or VCC)	 | 01	             | 3V3                          |
-| GND           | 06              | GND                          |
-| CS	           | 24              | GPIO08 (SPI0_CE0_N)          |
-| SDO	          | 21	             | GPIO09 (SPI0_MISO) |
-| SDA	          | 19	             | GPIO10 (SPI0_MOSI)           |                |
-| SCL	          | 23	             | GPIO11 (SPI0_SCLK)           |
+| ADXL345 пин   | RasbberryPi пин | название пина RasbberryPi |
+|:--------------|:----------------|:--------------------------|
+| 3V3 (or VCC)	 | 01	             | 3V3                       |
+| GND           | 06              | GND                       |
+| CS	           | 24              | GPIO08 (SPI0_CE0_N)       |
+| SDO	          | 21	             | GPIO09 (SPI0_MISO)        |
+| SDA	          | 19	             | GPIO10 (SPI0_MOSI)        |                
+| SCL	          | 23	             | GPIO11 (SPI0_SCLK)        |
 
-test https://klipper.wiki/ru/home/tuning/shaper
+## Проверка акселерометра
+Для проверки работы акселерометра можно получить его текущие значения. Для это нужно запустить команду `ACCELEROMETER_QUERY [CHIP=<config_name>]` в консоли веб интерфейса. Для стандартного названия акселерометра запустите
+```
+ACCELEROMETER_QUERY
+```
+Измерить шум датчиков можно командой `MEASURE_AXES_NOISE` нормальными считаются значения до 100.
+

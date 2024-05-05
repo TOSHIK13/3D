@@ -1,5 +1,5 @@
-site_name: MkDocs YouTube Tutorial
-site_url: https://james-willett.github.io/mkdocs-material-youtube-tutorial/
+site_name: Manual VOSTOK
+site_url: https://toshik13.github.io/3D/
 theme:
   name: material
   features:
@@ -12,7 +12,9 @@ theme:
     - content.tabs.link
     - content.code.annotation
     - content.code.copy
-  language: en
+    - navigation.tabs.sticky
+    - content.tooltips
+  language: ru
   palette:
     - scheme: default
       toggle:
@@ -29,33 +31,62 @@ theme:
   plugins:
     - social
 
-  extra:
-    social:
-      - icon: fontawesome/brands/github-alt
-        link: https://github.com/james-willett
-      - icon: fontawesome/brands/twitter
-        link: https://twitter.com/TheJamesWillett
-      - icon: fontawesome/brands/linkedin
-        link: https://www.linkedin.com/in/willettjames/
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/TOSHIK13
+    - icon: simple/telegram
+      link: https://t.me/k3d_vostok
 
-  markdown_extensions:
-    - pymdownx.highlight:
-        anchor_linenums: true
-        line_spans: __span
-        pygments_lang_class: true
-    - pymdownx.inlinehilite
-    - pymdownx.snippets
-    - pymdownx.superfences
-    - admonition
-    - pymdownx.arithmatex:
-        generic: true
-    - footnotes
-    - pymdownx.details
-    - pymdownx.mark
-    - attr_list
-    - md_in_html
-    - pymdownx.emoji:
-        emoji_index: !!python/name:materialx.emoji.twemoji
-        emoji_generator: !!python/name:materialx.emoji.to_svg
-  copyright: |
-    &copy; 2023 <a href="https://github.com/james-willett"  target="_blank" rel="noopener">James Willett</a>
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.mark
+  - attr_list
+  - md_in_html
+  - abbr
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.keys
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  - admonition
+  - footnotes
+  - toc
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+extra_css:
+  - stylesheets/extra4.css
+copyright: |
+  &copy; 2024 <a href="https://github.com/TOSHIK13"  target="_blank" rel="noopener">TOSHIK13</a>
