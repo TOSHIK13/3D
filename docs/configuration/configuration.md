@@ -169,6 +169,11 @@
             <td class="lang" id="table.z_rotation_distance.description" style="text-align: justify;"></td>
         </tr>
         <tr>
+            <th class="lang" id="table.extruder_rotation_distance.title">rotation_distance e</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_extruder_rotation_distance" name="k3d_config_extruder_rotation_distance" value="4.575"></td>
+            <td class="lang" id="table.extruder_rotation_distance.description" style="text-align: justify;"></td>
+        </tr>
+        <tr>
             <th class="lang" id="table.x_run_current.title">Ток двигателя X</td>
             <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_x_run_current" name="k3d_config_x_run_current" value="0.8"></td>
             <td class="lang" id="table.x_run_current.description" style="text-align: justify;">[А]</td>
@@ -197,6 +202,16 @@
             <th class="lang" id="table.z_hold_current.title">Ток удержания Z</td>
             <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_hold_current" name="k3d_config_z_hold_current" value="0.5"></td>
             <td class="lang" id="table.z_hold_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.extruder_run_current.title">Ток двигателя extruder</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_extruder_run_current" name="k3d_config_extruder_run_current" value="0.8"></td>
+            <td class="lang" id="table.extruder_run_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+            <tr>
+            <th class="lang" id="table.extruder_hold_current.title">Ток удержания extruder</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_extruder_hold_current" name="k3d_config_extruder_hold_current" value="0.5"></td>
+            <td class="lang" id="table.extruder_hold_current.description" style="text-align: justify;">[А]</td>
         </tr>
     </tbody>
 </table>

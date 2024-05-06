@@ -108,7 +108,7 @@ function processCheckboxes(fieldIds) {
     });
     return data;
 }
-function creatSteppers(data, motor, axis, main = true) {
+function creatSteppers(data, motor, axis, main = true, extruder=false) {
     //сли ость не основаня взять rotation_distance основной
     var general_parameters = {
         full_steps_per_rotation: '200',
@@ -139,6 +139,7 @@ rotation_distance: ${step.rotation_distance}
 microsteps: ${step.microsteps}
 full_steps_per_rotation: ${step.full_steps_per_rotation} # кол-во шагов на оборот. 1.8 градуса - 200, 0.9 градуса - 400
 endstop_pin: ${step.endstop_pin}`;
+    var text_step2 = '';
     if (main) {
         var text_step2 = `position_min: ${step.position_min}
 position_endstop: ${step.position_endstop}
@@ -146,9 +147,6 @@ position_max: ${step.position_max}
 homing_speed: ${step.homing_speed}
 second_homing_speed: ${step.second_homing_speed}`;
         // Ваш код для основного двигателя здесь
-    } else {
-        var text_step2 = '';
-        // Ваш код для неосновного двигателя здесь
     }
     var text_drive = `
 
@@ -158,6 +156,36 @@ run_current: ${step.run_current}
 hold_current: ${step.hold_current}
 interpolate : True
 stealthchop_threshold: 999999`;
+    if (extruder) {
+        var text_extruder = `
+#Motor${step.id}
+[stepper_${step.axis}]
+step_pin: ${step.step_pin}
+dir_pin: ${step.dir}${step.dir_pin} # напрвление вращения
+enable_pin: ${step.enable_pin}
+rotation_distance: ${step.rotation_distance}
+microsteps: ${step.microsteps}
+full_steps_per_rotation: ${step.full_steps_per_rotation} # кол-во шагов на оборот. 1.8 градуса - 200, 0.9 градуса - 400
+nozzle_diameter: 0.400
+filament_diameter: 1.75
+heater_pin: PA2 # HE0
+sensor_pin: PF4  # T0
+sensor_type: ATC Semitec 104NT-4-R025H42G
+min_temp: 10
+max_temp: 350
+min_extrude_temp: 170
+max_extrude_only_distance: 150
+max_extrude_cross_section: 999 # Фикс бага
+
+[tmc2209 ${step.axis}]
+uart_pin: ${step.uart_pin}
+run_current: ${step.run_current}
+hold_current: ${step.hold_current}
+stealthchop_threshold: 999999
+`;
+        return text_extruder
+        // Ваш код для основного двигателя здесь
+    }
 
     return text_step1 + text_step2 + text_drive
 }
@@ -231,7 +259,8 @@ ${creatSteppers(data, config_mcu['btt_octopus_pro'].motor4, 'z1', false)}
 ################################################################################
 #   Extruder
 ################################################################################
-
+${creatSteppers(data, config_mcu['btt_octopus_pro'].motor3, 'extruder', true, true)}
+${creatSteppers(data, config_mcu['btt_octopus_pro'].motor4, 'extruder1', false, true)}
 
 `;
     var bed = `
@@ -283,12 +312,15 @@ function processDataAndDownload() {
         'k3d_config_x_rotation_distance',
         'k3d_config_y_rotation_distance',
         'k3d_config_z_rotation_distance',
+        'k3d_config_extruder_rotation_distance',
         'k3d_config_x_run_current',
         'k3d_config_x_hold_current',
         'k3d_config_y_run_current',
         'k3d_config_y_hold_current',
         'k3d_config_z_run_current',
         'k3d_config_z_hold_current',
+        'k3d_config_extruder_run_current',
+        'k3d_config_extruder_hold_current',
     ]; // Список идентификаторов обычных полей
     var radioFieldList = [
         'k3d_config_MCU'
