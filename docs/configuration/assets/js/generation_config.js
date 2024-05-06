@@ -1,3 +1,73 @@
+var config_mcu = {
+  'btt_octopus_pro': {
+    motor0: {
+      id: '0',
+      step_pin: '!PF13',
+      dir_pin: 'PF12',
+      enable_pin: '!PF14',
+      endstop_pin: '!PG6',
+      uart_pin: 'PC4'
+    },
+    motor1: {
+      id: '1',
+      step_pin: '',
+      dir_pin: '',
+      enable_pin: '',
+      endstop_pin: '',
+      uart_pin: ''
+    },
+    motor2: {
+      id: '2',
+      step_pin: '',
+      dir_pin: '',
+      enable_pin: '',
+      endstop_pin: '',
+      uart_pin: ''
+    },
+    motor3: {
+      id: '3',
+      step_pin: '',
+      dir_pin: '',
+      enable_pin: '',
+      endstop_pin: '',
+      uart_pin: ''
+    },
+    motor4: {
+      id: '4',
+      step_pin: '',
+      dir_pin: '',
+      enable_pin: '',
+      endstop_pin: '',
+      uart_pin: ''
+    },
+    motor5: {
+      id: '5',
+      step_pin: '',
+      dir_pin: '',
+      enable_pin: '',
+      endstop_pin: '',
+      uart_pin: ''
+    },
+    motor6: {
+      id: '6',
+      step_pin: '',
+      dir_pin: '',
+      enable_pin: '',
+      endstop_pin: '',
+      uart_pin: ''
+    },
+    motor7: {
+      id: '7',
+      step_pin: '',
+      dir_pin: '',
+      enable_pin: '',
+      endstop_pin: '',
+      uart_pin: ''
+    }
+  }
+};
+
+
 // Функция сбора данных с сайта
 function collectDataFromFields(fieldList) {
     var data = {};
@@ -38,13 +108,63 @@ function processCheckboxes(fieldIds) {
     });
     return data;
 }
+function creatSteppers(data, motor, axis, main = true) {
+    console.log("motor:", motor);
+        if (main) {
+        // Ваш код для основного двигателя здесь
+    } else {
+        // Ваш код для неосновного двигателя здесь
+    }
+    var general_parameters = {
+        full_steps_per_rotation: '200',
+        microsteps: '128',
+        homing_speed: '20',
+        second_homing_speed: '5'
+
+    };
+    var individual_parameters = {
+        dir: (data[`${axis}_dir`]) ? '!' : '',
+        position_min: data[`${axis}_position_min`],
+        position_max: data[`size_${axis}`],
+        position_endstop: data[`${axis}_position_endstop`],
+        rotation_distance: data[`${axis}_rotation_distance`]
+    };
+    var step = { ...motor, ...general_parameters, ...individual_parameters};
+    step['axis'] = axis;
+    console.log("step:", step);
+
+    var text_step1 = `
+#Motor${step.id}
+[stepper_${step.axis}]
+step_pin: ${step.step_pin}
+dir_pin: ${step.dir}${step.dir_pin} # напрвление вращения
+enable_pin: ${step.enable_pin}
+rotation_distance: ${step.rotation_distance}
+microsteps: ${step.microsteps}
+full_steps_per_rotation: ${step.full_steps_per_rotation} # кол-во шагов на оборот. 1.8 градуса - 200, 0.9 градуса - 400
+endstop_pin: ${step.endstop_pin}`;
+    if (main) {
+        var text_step2 = `position_min: ${step.position_min}
+position_endstop: ${step.position_endstop}
+position_max: ${step.position_max}
+homing_speed: ${step.homing_speed}
+second_homing_speed: ${step.second_homing_speed}`;
+        // Ваш код для основного двигателя здесь
+    } else {
+        var text_step2 = '';
+        // Ваш код для неосновного двигателя здесь
+    }
+
+    return text_step1 + text_step2
+}
+
 
 // Функция создания текстового содержимого файла
 function createFileContent(data) {
     console.log("Все данные:", data);
     var included = `
 ################################################################################
-# Included configs
+#   Included configs
 ################################################################################
 [include macros.cfg]        # Основные макросы
 [include input_shaper.cfg]  # ADXL Input Shaping
@@ -53,13 +173,12 @@ function createFileContent(data) {
 [include idex.cfg]          # Смена печатающей головки
 [include misc.cfg]          # Разное
 [include fast_infill.cfg]   # sqv
-[include power_loss.cfg]    # ?
 [include shaper/ADXL_SHAPER.cfg] #
 `;
 
     var basic = `
 ################################################################################
-# Basic configurations
+#   Basic configurations
 ################################################################################
 [mcu rpi]
 serial: /tmp/klipper_host_mcu
@@ -83,16 +202,42 @@ max_temp: 100
 enable_force_move: ${data.enable_force_move}
 
 [printer]
-kinematics: cartesian
+kinematics: ${data.kinematics}
 max_velocity: ${data.max_velocity}
 max_accel: ${data.max_accel}
 max_accel_to_decel: ${data.max_accel_to_decel}
 max_z_velocity: ${data.max_z_velocity}
 max_z_accel: ${data.max_z_accel}
 square_corner_velocity: 10
-${data.MCU}`;
+`;
+    var stepper = `
+################################################################################
+#   X/Y Stepper Settings
+################################################################################
+${creatSteppers(data, config_mcu['btt_octopus_pro'].motor0, 'x')}
+${creatSteppers(data, config_mcu['btt_octopus_pro'].motor1, 'y')}
+${creatSteppers(data, config_mcu['btt_octopus_pro'].motor1, 'y1', false)}
 
-    var text = included + basic;
+################################################################################
+#   Z Stepper Settings
+################################################################################
+${creatSteppers(data, config_mcu['btt_octopus_pro'].motor3, 'z')}
+${creatSteppers(data, config_mcu['btt_octopus_pro'].motor4, 'z1', false)}
+
+################################################################################
+#   Extruder
+################################################################################
+
+
+`;
+    var bed = `
+################################################################################
+#   Bed Heater
+################################################################################
+
+`;
+
+    var text = included + basic + stepper + bed;
     return text;
 }
 
@@ -112,22 +257,37 @@ function downloadFile(filename, text) {
 // Обработчик события для кнопки
 function processDataAndDownload() {
     var fieldList = [
-        `k3d_config_mcu_serial`,
+        'k3d_config_mcu_serial',
         'k3d_config_max_accel',
         'k3d_config_max_velocity',
         'k3d_config_max_accel_to_decel',
         'k3d_config_max_z_velocity',
         'k3d_config_max_z_accel',
-        `k3d_config_MCU`,
-        `k3d_config_kinematics`,
-        `k3d_config_minimum_cruise_ratio`,
-        `k3d_config_square_corner_velocity`,
+        'k3d_config_MCU',
+        'k3d_config_kinematics',
+        'k3d_config_minimum_cruise_ratio',
+        'k3d_config_square_corner_velocity',
+        'k3d_config_x_position_min',
+        'k3d_config_x_position_endstop',
+        'k3d_config_y_position_min',
+        'k3d_config_y_position_endstop',
+        'k3d_config_z_position_min',
+        'k3d_config_z_position_endstop',
+        'k3d_config_size_x',
+        'k3d_config_size_y',
+        'k3d_config_size_z',
+        'k3d_config_x_rotation_distance',
+        'k3d_config_y_rotation_distance',
+        'k3d_config_z_rotation_distance',
     ]; // Список идентификаторов обычных полей
     var radioFieldList = [
         'k3d_config_MCU'
     ]; // Список идентификаторов полей радиокнопок
     var checkboxFieldList = [
-        'k3d_config_enable_force_move'
+        'k3d_config_enable_force_move',
+        'k3d_config_x_dir',
+        'k3d_config_y_dir',
+        'k3d_config_z_dir',
     ]; // Список идентификаторов полей чекбоксов
 
     var formData = collectDataFromFields(fieldList);

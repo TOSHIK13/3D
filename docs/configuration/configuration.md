@@ -17,7 +17,7 @@
         </tr>
         <tr>
             <th class="lang" id="table.serial.title">Адрес MCU</td>
-            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_serial" name="k3d_config_serial" value="/dev/serial/by-id/usb-Klipper_stm32f429xx_3F0039000950314B33323220-if00"></td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_mcu_serial" name="k3d_config_mcu_serial" value="/dev/serial/by-id/usb-Klipper_stm32f429xx_3F0039000950314B33323220-if00"></td>
             <td class="lang" id="table.serial.description" style="text-align: justify;">Адрес можно узнать в консоле Линукса ls /dev/serial/by-id</td>
         </tr>
         </tr>
@@ -44,10 +44,10 @@
         <tr>
             <th class="lang" id="k3d_config_MCU">Материнская плата</td>
             <td align="center">
-                <form style="text-align:left; width:fit-content;"><input type="radio" id="k3d_config_MCU_0" name="k3d_config_MCU" value="Fysetc spider" checked><label for="k3d_la_firmwareMarlin"> Fysetc spider</label><br>
-                <input type="radio" id="k3d_config_MCU_1" name="k3d_config_MCU" value="BTT Octopus"><label for="k3d_la_firmwareKlipper"> BTT Octopus</label><br>
-                <input type="radio" id="k3d_config_MCU_2" name="k3d_config_MCU" value="BTT Octopus pro"><label for="k3d_la_firmwareRRF"> BTT Octopus pro</label><br>
-				<input type="radio" id="k3d_config_MCU_2" name="k3d_config_MCU" value="BTT SKR 1.4"><label for="k3d_la_firmwareRRF"> BTT SKR 1.4</label>
+                <form style="text-align:left; width:fit-content;"><input type="radio" id="k3d_config_MCU_0" name="k3d_config_MCU" value="fysetc_spider" checked><label for="k3d_la_firmwareMarlin"> Fysetc spider</label><br>
+                <input type="radio" id="k3d_config_MCU_1" name="k3d_config_MCU" value="btt_octopus"><label for="k3d_la_firmwareKlipper"> BTT Octopus</label><br>
+                <input type="radio" id="k3d_config_MCU_2" name="k3d_config_MCU" value="btt_octopus_pro"><label for="k3d_la_firmwareRRF"> BTT Octopus pro</label><br>
+				<input type="radio" id="k3d_config_MCU_2" name="k3d_config_MCU" value="btt_skr_1.4"><label for="k3d_la_firmwareRRF"> BTT SKR 1.4</label>
                 </form>
             </td>
             <td class="lang" id="table.firmware.description" style="text-align: justify;">Выберите подходящую материнскую плату</td>
@@ -88,16 +88,33 @@
         <tr>
             <th class="lang" id="table.x_position_min.title">X минимум</td>
             <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_x_position_min" name="k3d_config_x_position_min" value="-0.01"></td>
-            <td class="lang" id="table.x_position_min.description" style="text-align: justify;">[мм] Минимальное положение по оси х</td>
+            <td class="lang" id="table.x_position_min.description" style="text-align: justify;">[мм] Минимальное положение по оси X</td>
         </tr>
         <tr>
             <th class="lang" id="table.x_position_endstop.title">Концевик Х</td>
             <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_x_position_endstop" name="k3d_config_x_position_endstop" value="0"></td>
             <td class="lang" id="table.x_position_endstop.description" style="text-align: justify;">[мм] Положения концевика оси Х</td>
         </tr>
-
-		
-		
+        <tr>
+            <th class="lang" id="table.y_position_min.title">Y минимум</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_y_position_min" name="k3d_config_y_position_min" value="-0.01"></td>
+            <td class="lang" id="table.y_position_min.description" style="text-align: justify;">[мм] Минимальное положение по оси Y</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.y_position_endstop.title">Концевик Y</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_y_position_endstop" name="k3d_config_y_position_endstop" value="0"></td>
+            <td class="lang" id="table.y_position_endstop.description" style="text-align: justify;">[мм] Положения концевика оси Y</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.z_position_min.title">Z минимум</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_position_min" name="k3d_config_z_position_min" value="-0.01"></td>
+            <td class="lang" id="table.z_position_min.description" style="text-align: justify;">[мм] Минимальное положение по оси Z</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.z_position_endstop.title">Концевик Z</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_position_endstop" name="k3d_config_z_position_endstop" value="0"></td>
+            <td class="lang" id="table.z_position_endstop.description" style="text-align: justify;">[мм] Положения концевика оси Z</td>
+        </tr>
         <tr>
             <td colspan="3" style="text-align:center">Настройки раздела [MCU] и [printer]</td>
         </tr>
@@ -118,8 +135,38 @@
         </tr>
         <tr>
             <th class="lang" id="table.delta.title">Ручное перемещение</td>
-            <td style="text-align:center"><input type="checkbox" id="k3d_config_enable_force_move" name="k3d_config_enable_force_move"></td>
-            <td class="lang" id="table.delta.description" style="text-align: justify;">enable_force_move Режим ручного перемещения шаговых двигателей в целях диагностики</td>
+            <td style="text-align:center"><input type="checkbox" id="k3d_config_enable_force_move" name="k3d_config_enable_force_move" checked></td>
+            <td class="lang" id="table.delta.description" style="text-align: justify;">Необходимо для макросов и диагностики</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.x_dir.title">Инвертировать X</td>
+            <td style="text-align:center"><input type="checkbox" id="k3d_config_x_dir" name="k3d_config_x_dir" checked></td>
+            <td class="lang" id="table.x_dir.description" style="text-align: justify;"></td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.y_dir.title">Инвертировать Y</td>
+            <td style="text-align:center"><input type="checkbox" id="k3d_config_y_dir" name="k3d_config_y_dir" checked></td>
+            <td class="lang" id="table.y_dir.description" style="text-align: justify;"></td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.z_dir.title">Инвертировать Z</td>
+            <td style="text-align:center"><input type="checkbox" id="k3d_config_z_dir" name="k3d_config_z_dir" checked></td>
+            <td class="lang" id="table.z_dir.description" style="text-align: justify;"></td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.x_rotation_distance.title">rotation_distance x</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_x_rotation_distance" name="k3d_config_x_rotation_distance" value="19.93"></td>
+            <td class="lang" id="table.x_rotation_distance.description" style="text-align: justify;"></td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.y_rotation_distance.title">rotation_distance y</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_y_rotation_distance" name="k3d_config_y_rotation_distance" value="19.93"></td>
+            <td class="lang" id="table.y_rotation_distance.description" style="text-align: justify;"></td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.z_rotation_distance.title">rotation_distance z</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_rotation_distance" name="k3d_config_z_rotation_distance" value="19.93"></td>
+            <td class="lang" id="table.z_rotation_distance.description" style="text-align: justify;"></td>
         </tr>
     </tbody>
 </table>
