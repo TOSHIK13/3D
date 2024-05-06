@@ -160,12 +160,12 @@
         </tr>
         <tr>
             <th class="lang" id="table.y_rotation_distance.title">rotation_distance y</td>
-            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_y_rotation_distance" name="k3d_config_y_rotation_distance" value="19.93"></td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_y_rotation_distance" name="k3d_config_y_rotation_distance" value="39.85"></td>
             <td class="lang" id="table.y_rotation_distance.description" style="text-align: justify;"></td>
         </tr>
         <tr>
             <th class="lang" id="table.z_rotation_distance.title">rotation_distance z</td>
-            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_rotation_distance" name="k3d_config_z_rotation_distance" value="19.93"></td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_rotation_distance" name="k3d_config_z_rotation_distance" value="7.95"></td>
             <td class="lang" id="table.z_rotation_distance.description" style="text-align: justify;"></td>
         </tr>
         <tr>
