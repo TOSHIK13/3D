@@ -44,9 +44,9 @@
         <tr>
             <th class="lang" id="k3d_config_MCU">Материнская плата</td>
             <td align="center">
-                <form style="text-align:left; width:fit-content;"><input type="radio" id="k3d_config_MCU_0" name="k3d_config_MCU" value="fysetc_spider" checked><label for="k3d_la_firmwareMarlin"> Fysetc spider</label><br>
+                <form style="text-align:left; width:fit-content;"><input type="radio" id="k3d_config_MCU_0" name="k3d_config_MCU" value="fysetc_spider"><label for="k3d_la_firmwareMarlin"> Fysetc spider</label><br>
                 <input type="radio" id="k3d_config_MCU_1" name="k3d_config_MCU" value="btt_octopus"><label for="k3d_la_firmwareKlipper"> BTT Octopus</label><br>
-                <input type="radio" id="k3d_config_MCU_2" name="k3d_config_MCU" value="btt_octopus_pro"><label for="k3d_la_firmwareRRF"> BTT Octopus pro</label><br>
+                <input type="radio" id="k3d_config_MCU_2" name="k3d_config_MCU" value="btt_octopus_pro" checked><label for="k3d_la_firmwareRRF"> BTT Octopus pro</label><br>
 				<input type="radio" id="k3d_config_MCU_2" name="k3d_config_MCU" value="btt_skr_1.4"><label for="k3d_la_firmwareRRF"> BTT SKR 1.4</label>
                 </form>
             </td>
@@ -167,6 +167,36 @@
             <th class="lang" id="table.z_rotation_distance.title">rotation_distance z</td>
             <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_rotation_distance" name="k3d_config_z_rotation_distance" value="19.93"></td>
             <td class="lang" id="table.z_rotation_distance.description" style="text-align: justify;"></td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.x_run_current.title">Ток двигателя X</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_x_run_current" name="k3d_config_x_run_current" value="0.8"></td>
+            <td class="lang" id="table.x_run_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+            <tr>
+            <th class="lang" id="table.x_hold_current.title">Ток удержания X</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_x_hold_current" name="k3d_config_x_hold_current" value="0.5"></td>
+            <td class="lang" id="table.x_hold_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.y_run_current.title">Ток двигателя Y</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_y_run_current" name="k3d_config_y_run_current" value="0.8"></td>
+            <td class="lang" id="table.y_run_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+            <tr>
+            <th class="lang" id="table.y_hold_current.title">Ток удержания Y</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_y_hold_current" name="k3d_config_y_hold_current" value="0.5"></td>
+            <td class="lang" id="table.y_hold_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.z_run_current.title">Ток двигателя Z</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_run_current" name="k3d_config_z_run_current" value="0.8"></td>
+            <td class="lang" id="table.z_run_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+            <tr>
+            <th class="lang" id="table.z_hold_current.title">Ток удержания Z</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_hold_current" name="k3d_config_z_hold_current" value="0.5"></td>
+            <td class="lang" id="table.z_hold_current.description" style="text-align: justify;">[А]</td>
         </tr>
     </tbody>
 </table>

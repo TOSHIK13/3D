@@ -109,12 +109,7 @@ function processCheckboxes(fieldIds) {
     return data;
 }
 function creatSteppers(data, motor, axis, main = true) {
-    console.log("motor:", motor);
-        if (main) {
-        // Ваш код для основного двигателя здесь
-    } else {
-        // Ваш код для неосновного двигателя здесь
-    }
+    //сли ость не основаня взять rotation_distance основной
     var general_parameters = {
         full_steps_per_rotation: '200',
         microsteps: '128',
@@ -127,11 +122,12 @@ function creatSteppers(data, motor, axis, main = true) {
         position_min: data[`${axis}_position_min`],
         position_max: data[`size_${axis}`],
         position_endstop: data[`${axis}_position_endstop`],
-        rotation_distance: data[`${axis}_rotation_distance`]
+        rotation_distance: (main) ? data[`${axis}_rotation_distance`] : data[`${axis.slice(0, -1)}_rotation_distance`],
+        run_current: (main) ? data[`${axis}_run_current`] : data[`${axis.slice(0, -1)}_run_current`],
+        hold_current: (main) ? data[`${axis}_hold_current`] : data[`${axis.slice(0, -1)}_hold_current`]
     };
     var step = { ...motor, ...general_parameters, ...individual_parameters};
     step['axis'] = axis;
-    console.log("step:", step);
 
     var text_step1 = `
 #Motor${step.id}
@@ -154,8 +150,16 @@ second_homing_speed: ${step.second_homing_speed}`;
         var text_step2 = '';
         // Ваш код для неосновного двигателя здесь
     }
+    var text_drive = `
 
-    return text_step1 + text_step2
+[tmc2209 stepper_${step.axis}]
+uart_pin: ${step.uart_pin}
+run_current: ${step.run_current}
+hold_current: ${step.hold_current}
+interpolate : True
+stealthchop_threshold: 999999`;
+
+    return text_step1 + text_step2 + text_drive
 }
 
 
@@ -214,9 +218,9 @@ square_corner_velocity: 10
 ################################################################################
 #   X/Y Stepper Settings
 ################################################################################
-${creatSteppers(data, config_mcu['btt_octopus_pro'].motor0, 'x')}
-${creatSteppers(data, config_mcu['btt_octopus_pro'].motor1, 'y')}
-${creatSteppers(data, config_mcu['btt_octopus_pro'].motor1, 'y1', false)}
+${creatSteppers(data, config_mcu[data.MCU].motor0, 'x')}
+${creatSteppers(data, config_mcu[data.MCU].motor1, 'y')}
+${creatSteppers(data, config_mcu[data.MCU].motor2, 'y1', false)}
 
 ################################################################################
 #   Z Stepper Settings
@@ -279,6 +283,12 @@ function processDataAndDownload() {
         'k3d_config_x_rotation_distance',
         'k3d_config_y_rotation_distance',
         'k3d_config_z_rotation_distance',
+        'k3d_config_x_run_current',
+        'k3d_config_x_hold_current',
+        'k3d_config_y_run_current',
+        'k3d_config_y_hold_current',
+        'k3d_config_z_run_current',
+        'k3d_config_z_hold_current',
     ]; // Список идентификаторов обычных полей
     var radioFieldList = [
         'k3d_config_MCU'
