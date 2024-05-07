@@ -38,7 +38,7 @@
         </tr>
         <tr>
             <th class="lang" id="table.idex.title">Количество экструдеров</td>
-            <td style="text-align:center"><input type="checkbox" id="k3d_config_idex" name="k3d_config_idex"></td>
+            <td style="text-align:center"><input type="checkbox" id="k3d_config_idex" name="k3d_config_idex" checked></td>
             <td class="lang" id="table.idex.description" style="text-align: justify;">Выключено - обычный одиночный экструдер <br>Включено - IDEX (две независимые печатающие головы)</td>
         </tr>
         <tr>
@@ -176,7 +176,7 @@
         </tr>
         <tr>
             <th class="lang" id="table.x_run_current.title">Ток двигателя X</td>
-            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_x_run_current" name="k3d_config_x_run_current" value="0.8"></td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_x_run_current" name="k3d_config_x_run_current" value="0.7"></td>
             <td class="lang" id="table.x_run_current.description" style="text-align: justify;">[А]</td>
         </tr>
             <tr>
@@ -186,7 +186,7 @@
         </tr>
         <tr>
             <th class="lang" id="table.y_run_current.title">Ток двигателя Y</td>
-            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_y_run_current" name="k3d_config_y_run_current" value="0.8"></td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_y_run_current" name="k3d_config_y_run_current" value="0.7"></td>
             <td class="lang" id="table.y_run_current.description" style="text-align: justify;">[А]</td>
         </tr>
             <tr>
@@ -196,7 +196,7 @@
         </tr>
         <tr>
             <th class="lang" id="table.z_run_current.title">Ток двигателя Z</td>
-            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_run_current" name="k3d_config_z_run_current" value="0.8"></td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_run_current" name="k3d_config_z_run_current" value="0.7"></td>
             <td class="lang" id="table.z_run_current.description" style="text-align: justify;">[А]</td>
         </tr>
             <tr>
@@ -206,7 +206,7 @@
         </tr>
         <tr>
             <th class="lang" id="table.extruder_run_current.title">Ток двигателя extruder</td>
-            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_extruder_run_current" name="k3d_config_extruder_run_current" value="0.8"></td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_extruder_run_current" name="k3d_config_extruder_run_current" value="0.7"></td>
             <td class="lang" id="table.extruder_run_current.description" style="text-align: justify;">[А]</td>
         </tr>
             <tr>

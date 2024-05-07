@@ -81,9 +81,7 @@ var config_mcu = {
 	fan3: 'PD13',
 	fan4: 'PD14',
 	fan5: 'PD15',
-  }
-};
-var config_mcu = {
+  },
   'btt_octopus_pro_v1.0': {
     docs: 'https://github.com/bigtreetech/BIGTREETECH-OCTOPUS-Pro',
 	motor0: {
@@ -170,6 +168,7 @@ var config_mcu = {
 };
 
 
+
 // Функция сбора данных с сайта
 function collectDataFromFields(fieldList) {
     var data = {};
@@ -210,7 +209,7 @@ function processCheckboxes(fieldIds) {
     });
     return data;
 }
-function creatSteppers(data, motor, axis, main = true, extruder=false) {
+function creatSteppers(data, motor, axis, main = true, extruder=false, exid = '') {
     //сли ость не основаня взять rotation_distance основной
     var general_parameters = {
         full_steps_per_rotation: '200',
@@ -226,14 +225,26 @@ function creatSteppers(data, motor, axis, main = true, extruder=false) {
         position_endstop: data[`${axis}_position_endstop`],
         rotation_distance: (main) ? data[`${axis}_rotation_distance`] : data[`${axis.slice(0, -1)}_rotation_distance`],
         run_current: (main) ? data[`${axis}_run_current`] : data[`${axis.slice(0, -1)}_run_current`],
-        hold_current: (main) ? data[`${axis}_hold_current`] : data[`${axis.slice(0, -1)}_hold_current`]
+        hold_current: (main) ? data[`${axis}_hold_current`] : data[`${axis.slice(0, -1)}_hold_current`],
+        name_step: `[stepper_${axis}]`,
+        name_drive: `[tmc2209 stepper_${axis}]`,
     };
     var step = { ...motor, ...general_parameters, ...individual_parameters};
     step['axis'] = axis;
+    if (axis === 'dual_carriage'){
+        step.rotation_distance = data[`x_rotation_distance`];
+        step.run_current = data[`x_run_current`];
+        step.hold_current = data[`x_hold_current`];
+        step.name_step = `[${step.axis}]
+axis: x
+safe_distance: 52`;
+        step.name_drive = `[tmc2209 ${step.axis}]`;
+    };
+
 
     var text_step1 = `
 #Motor${step.id}
-[stepper_${step.axis}]
+${step.name_step}
 step_pin: ${step.step_pin}
 dir_pin: ${step.dir}${step.dir_pin} # напрвление вращения
 enable_pin: ${step.enable_pin}
@@ -243,7 +254,8 @@ full_steps_per_rotation: ${step.full_steps_per_rotation} # кол-во шаго�
 endstop_pin: ${step.endstop_pin}`;
     var text_step2 = '';
     if (main) {
-        var text_step2 = `position_min: ${step.position_min}
+        var text_step2 = `
+position_min: ${step.position_min}
 position_endstop: ${step.position_endstop}
 position_max: ${step.position_max}
 homing_speed: ${step.homing_speed}
@@ -252,7 +264,7 @@ second_homing_speed: ${step.second_homing_speed}`;
     }
     var text_drive = `
 
-[tmc2209 stepper_${step.axis}]
+${step.name_drive}
 uart_pin: ${step.uart_pin}
 run_current: ${step.run_current}
 hold_current: ${step.hold_current}
@@ -270,8 +282,8 @@ microsteps: ${step.microsteps}
 full_steps_per_rotation: ${step.full_steps_per_rotation} # кол-во шагов на оборот. 1.8 градуса - 200, 0.9 градуса - 400
 nozzle_diameter: 0.400
 filament_diameter: 1.75
-heater_pin: PA2 # HE0
-sensor_pin: PF4  # T0
+heater_pin: ${config_mcu[data.MCU][`he${exid}`]} # HE${exid}
+sensor_pin: ${config_mcu[data.MCU][`t${exid}`]} # T${exid}
 sensor_type: ATC Semitec 104NT-4-R025H42G
 min_temp: 10
 max_temp: 350
@@ -300,23 +312,20 @@ function createFileContent(data) {
 ################################################################################
 #   Included configs
 ################################################################################
-[include macros.cfg]        # Основные макросы
-[include input_shaper.cfg]  # ADXL Input Shaping
+#[include macros.cfg]        # Основные макросы
+#[include input_shaper.cfg]  # ADXL Input Shaping
 #[include leds.cfg]
-[include fans.cfg]          # Вентилятор
-[include idex.cfg]          # Смена печатающей головки
-[include misc.cfg]          # Разное
-[include fast_infill.cfg]   # sqv
-[include shaper/ADXL_SHAPER.cfg] #
+#[include fans.cfg]          # Вентилятор
+#[include idex.cfg]          # Смена печатающей головки
+#[include misc.cfg]          # Разное
+#[include fast_infill.cfg]   # sqv
+#[include shaper/ADXL_SHAPER.cfg] #
 `;
 
     var basic = `
 ################################################################################
 #   Basic configurations
 ################################################################################
-[mcu rpi]
-serial: /tmp/klipper_host_mcu
-
 [mcu]
 serial: ${data.mcu_serial}
 
@@ -351,18 +360,19 @@ square_corner_velocity: 10
 ${creatSteppers(data, config_mcu[data.MCU].motor0, 'x')}
 ${creatSteppers(data, config_mcu[data.MCU].motor1, 'y')}
 ${creatSteppers(data, config_mcu[data.MCU].motor2, 'y1', false)}
+${(data.idex) ? creatSteppers(data, config_mcu[data.MCU].motor3, 'dual_carriage') : ''}
 
 ################################################################################
 #   Z Stepper Settings
 ################################################################################
-${creatSteppers(data, config_mcu['btt_octopus_pro'].motor3, 'z')}
-${creatSteppers(data, config_mcu['btt_octopus_pro'].motor4, 'z1', false)}
+${creatSteppers(data, config_mcu[data.MCU].motor3, 'z')}
+${creatSteppers(data, config_mcu[data.MCU].motor4, 'z1', false)}
 
 ################################################################################
 #   Extruder
 ################################################################################
-${creatSteppers(data, config_mcu['btt_octopus_pro'].motor3, 'extruder', true, true)}
-${creatSteppers(data, config_mcu['btt_octopus_pro'].motor4, 'extruder1', false, true)}
+${creatSteppers(data, config_mcu[data.MCU].motor3, 'extruder', true, true,'0')}
+${(data.idex) ? creatSteppers(data, config_mcu[data.MCU].motor4, 'extruder1', false, true,'1') : ''}
 
 `;
     var bed = `
@@ -370,6 +380,19 @@ ${creatSteppers(data, config_mcu['btt_octopus_pro'].motor4, 'extruder1', false, 
 #   Bed Heater
 ################################################################################
 
+[heater_bed]
+## SSR Pin - In BED OUT position
+heater_pin: ${config_mcu[data.MCU][`he1`]} # HE1
+sensor_type: ATC Semitec 104NT-4-R025H42G
+sensor_pin: ${config_mcu[data.MCU][`tb`]} # TB
+## Adjust Max Power so your heater doesn't warp your bed
+max_power: 1.0
+#control: pid
+#pid_Kp=59.509 
+#pid_Ki=2.464 
+#pid_Kd=359.284
+min_temp: 15
+max_temp: 120
 `;
 
     var text = included + basic + stepper + bed;
@@ -428,6 +451,7 @@ function processDataAndDownload() {
         'k3d_config_MCU'
     ]; // Список идентификаторов полей радиокнопок
     var checkboxFieldList = [
+        'k3d_config_idex',
         'k3d_config_enable_force_move',
         'k3d_config_x_dir',
         'k3d_config_y_dir',
