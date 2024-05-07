@@ -1,9 +1,9 @@
 var config_mcu = {
-  'btt_octopus_pro_v1.1': {
+  'btt_octopus_pro_v1.0': {
     docs: 'https://github.com/bigtreetech/BIGTREETECH-OCTOPUS-Pro',
 	motor0: {
       id: '0',
-      step_pin: '!PF13',
+      step_pin: 'PF13',
       dir_pin: 'PF12',
       enable_pin: '!PF14',
       endstop_pin: '!PG6',
@@ -14,7 +14,7 @@ var config_mcu = {
       step_pin: 'PG0',
       dir_pin: 'PG1',
       enable_pin: '!PF15',
-      endstop_pin: 'PG9',
+      endstop_pin: '!PG9',
       uart_pin: 'PD11'
     },
     motor2: {
@@ -22,14 +22,14 @@ var config_mcu = {
       step_pin: 'PF11',
       dir_pin: 'PG3',
       enable_pin: '!PG5',
-      endstop_pin: 'PG10',
+      endstop_pin: '!PG10',
       uart_pin: 'PC6'
     },
     motor3: {
       id: '3',
       step_pin: 'PG4',
       dir_pin: 'PC1',
-      enable_pin: 'PA2',
+      enable_pin: '!PA0',
       endstop_pin: 'PG11',
       uart_pin: 'PC7'
     },
@@ -54,7 +54,7 @@ var config_mcu = {
       step_pin: 'PE2',
       dir_pin: 'PE3',
       enable_pin: '!PD4',
-      endstop_pin: 'PG14',
+      endstop_pin: '!PG14',
       uart_pin: 'PE1'
     },
     motor7: {
@@ -66,7 +66,7 @@ var config_mcu = {
       uart_pin: 'PD3'
     },
 	heb: 'PA1',
-	he0: 'PA0',
+	he0: 'PA2',
 	he1: 'PA3',
 	he2: 'PB0',
 	he3: 'PB11',
@@ -81,90 +81,8 @@ var config_mcu = {
 	fan3: 'PD13',
 	fan4: 'PD14',
 	fan5: 'PD15',
-  },
-  'btt_octopus_pro_v1.0': {
-    docs: 'https://github.com/bigtreetech/BIGTREETECH-OCTOPUS-Pro',
-	motor0: {
-      id: '0',
-      step_pin: '!PF13',
-      dir_pin: 'PF12',
-      enable_pin: '!PF14',
-      endstop_pin: '!PG6',
-      uart_pin: 'PC4'
-    },
-    motor1: {
-      id: '1',
-      step_pin: 'PG0',
-      dir_pin: 'PG1',
-      enable_pin: '!PF15',
-      endstop_pin: 'PG9',
-      uart_pin: 'PD11'
-    },
-    motor2: {
-      id: '2',
-      step_pin: 'PF11',
-      dir_pin: 'PG3',
-      enable_pin: '!PG5',
-      endstop_pin: 'PG10',
-      uart_pin: 'PC6'
-    },
-    motor3: {
-      id: '3',
-      step_pin: 'PG4',
-      dir_pin: 'PC1',
-      enable_pin: 'PA0',
-      endstop_pin: 'PG11',
-      uart_pin: 'PC7'
-    },
-    motor4: {
-      id: '4',
-      step_pin: 'PF9',
-      dir_pin: 'PF10',
-      enable_pin: '!PG2',
-      endstop_pin: 'PG12',
-      uart_pin: 'PF2'
-    },
-    motor5: {
-      id: '5',
-      step_pin: 'PC13',
-      dir_pin: 'PF0',
-      enable_pin: '!PF1',
-      endstop_pin: 'PG13',
-      uart_pin: 'PE4'
-    },
-    motor6: {
-      id: '6',
-      step_pin: 'PE2',
-      dir_pin: 'PE3',
-      enable_pin: '!PD4',
-      endstop_pin: 'PG14',
-      uart_pin: 'PE1'
-    },
-    motor7: {
-      id: '7',
-      step_pin: 'PE6',
-      dir_pin: 'PA14',
-      enable_pin: '!PE0',
-      endstop_pin: 'PG15',
-      uart_pin: 'PD3'
-    },
-	heb: 'PA1',
-	he0: 'PA2',
-	he1: 'PA3',
-	he2: 'PB10',
-	he3: 'PB11',
-	tb: 'PF3',
-	t0: 'PF4',
-	t1: 'PF5',
-	t2: 'PF6',
-	t3: 'PF7',
-	fan0: 'PA8',
-	fan1: 'PE5',
-	fan2: 'PD12',
-	fan3: 'PD13',
-	fan4: 'PD14',
-	fan5: 'PD15',
   }
+
 };
 
 
@@ -196,7 +114,16 @@ function processRadioButtons(ids) {
     return data;
 }
 
-
+// Функция для инвертирования пина
+function invert(str) {
+    if (str.startsWith('!')) {
+        // Удаляем символ "!"
+        return str.substring(1);
+    } else {
+        // Добавляем символ "!"
+        return '!' + str;
+    }
+}
 
 // Функция для обработки выбора чекбоксов
 function processCheckboxes(fieldIds) {
@@ -219,7 +146,7 @@ function creatSteppers(data, motor, axis, main = true, extruder=false, exid = ''
 
     };
     var individual_parameters = {
-        dir: (data[`${axis}_dir`]) ? '!' : '',
+        dir:(main) ? data[`${axis}_dir`] : data[`${axis.slice(0, -1)}_dir`],
         position_min: data[`${axis}_position_min`],
         position_max: data[`size_${axis}`],
         position_endstop: data[`${axis}_position_endstop`],
@@ -231,14 +158,21 @@ function creatSteppers(data, motor, axis, main = true, extruder=false, exid = ''
     };
     var step = { ...motor, ...general_parameters, ...individual_parameters};
     step['axis'] = axis;
+    step.dir_pin = (step.dir) ? invert(step.dir_pin) : step.dir_pin;
     if (axis === 'dual_carriage'){
         step.rotation_distance = data[`x_rotation_distance`];
         step.run_current = data[`x_run_current`];
         step.hold_current = data[`x_hold_current`];
+        step.position_min = '0';
+        step.position_max = data.size_x;
+        step.position_endstop = data.size_x;
         step.name_step = `[${step.axis}]
 axis: x
 safe_distance: 52`;
         step.name_drive = `[tmc2209 ${step.axis}]`;
+    };
+    if (axis === 'y1'){
+        step.dir_pin = invert(step.dir_pin);
     };
 
 
@@ -246,7 +180,7 @@ safe_distance: 52`;
 #Motor${step.id}
 ${step.name_step}
 step_pin: ${step.step_pin}
-dir_pin: ${step.dir}${step.dir_pin} # напрвление вращения
+dir_pin: ${step.dir_pin} # напрвление вращения
 enable_pin: ${step.enable_pin}
 rotation_distance: ${step.rotation_distance}
 microsteps: ${step.microsteps}
@@ -273,23 +207,27 @@ stealthchop_threshold: 999999`;
     if (extruder) {
         var text_extruder = `
 #Motor${step.id}
-[stepper_${step.axis}]
+[${step.axis}]
 step_pin: ${step.step_pin}
 dir_pin: ${step.dir}${step.dir_pin} # напрвление вращения
 enable_pin: ${step.enable_pin}
 rotation_distance: ${step.rotation_distance}
 microsteps: ${step.microsteps}
 full_steps_per_rotation: ${step.full_steps_per_rotation} # кол-во шагов на оборот. 1.8 градуса - 200, 0.9 градуса - 400
-nozzle_diameter: 0.400
+nozzle_diameter: ${data.nozzle_diameter}
 filament_diameter: 1.75
 heater_pin: ${config_mcu[data.MCU][`he${exid}`]} # HE${exid}
 sensor_pin: ${config_mcu[data.MCU][`t${exid}`]} # T${exid}
-sensor_type: ATC Semitec 104NT-4-R025H42G
+sensor_type: ${data.thermistor_bed}
 min_temp: 10
-max_temp: 350
+max_temp: 300
 min_extrude_temp: 170
 max_extrude_only_distance: 150
 max_extrude_cross_section: 999 # Фикс бага
+control = pid
+pid_kp = 18.370
+pid_ki = 1.012
+pid_kd = 83.355
 
 [tmc2209 ${step.axis}]
 uart_pin: ${step.uart_pin}
@@ -312,14 +250,15 @@ function createFileContent(data) {
 ################################################################################
 #   Included configs
 ################################################################################
-#[include macros.cfg]        # Основные макросы
+[include macros.cfg]        # Основные макросы
 #[include input_shaper.cfg]  # ADXL Input Shaping
 #[include leds.cfg]
 #[include fans.cfg]          # Вентилятор
 #[include idex.cfg]          # Смена печатающей головки
-#[include misc.cfg]          # Разное
+[include misc.cfg]          # Разное
 #[include fast_infill.cfg]   # sqv
 #[include shaper/ADXL_SHAPER.cfg] #
+[include start_calibration.cfg] 
 `;
 
     var basic = `
@@ -360,7 +299,7 @@ square_corner_velocity: 10
 ${creatSteppers(data, config_mcu[data.MCU].motor0, 'x')}
 ${creatSteppers(data, config_mcu[data.MCU].motor1, 'y')}
 ${creatSteppers(data, config_mcu[data.MCU].motor2, 'y1', false)}
-${(data.idex) ? creatSteppers(data, config_mcu[data.MCU].motor3, 'dual_carriage') : ''}
+${(data.idex) ? creatSteppers(data, config_mcu[data.MCU].motor6, 'dual_carriage') : ''}
 
 ################################################################################
 #   Z Stepper Settings
@@ -371,8 +310,8 @@ ${creatSteppers(data, config_mcu[data.MCU].motor4, 'z1', false)}
 ################################################################################
 #   Extruder
 ################################################################################
-${creatSteppers(data, config_mcu[data.MCU].motor3, 'extruder', true, true,'0')}
-${(data.idex) ? creatSteppers(data, config_mcu[data.MCU].motor4, 'extruder1', false, true,'1') : ''}
+${creatSteppers(data, config_mcu[data.MCU].motor5, 'extruder', true, true,'0')}
+${(data.idex) ? creatSteppers(data, config_mcu[data.MCU].motor7, 'extruder1', false, true,'2') : ''}
 
 `;
     var bed = `
@@ -383,14 +322,14 @@ ${(data.idex) ? creatSteppers(data, config_mcu[data.MCU].motor4, 'extruder1', fa
 [heater_bed]
 ## SSR Pin - In BED OUT position
 heater_pin: ${config_mcu[data.MCU][`he1`]} # HE1
-sensor_type: ATC Semitec 104NT-4-R025H42G
-sensor_pin: ${config_mcu[data.MCU][`tb`]} # TB
+sensor_type: ${data.thermistor_bed}
+sensor_pin: ${config_mcu[data.MCU][`t1`]} # T1
 ## Adjust Max Power so your heater doesn't warp your bed
 max_power: 1.0
-#control: pid
-#pid_Kp=59.509 
-#pid_Ki=2.464 
-#pid_Kd=359.284
+control: pid
+pid_Kp=59.509 
+pid_Ki=2.464 
+pid_Kd=359.284
 min_temp: 15
 max_temp: 120
 `;
@@ -446,9 +385,12 @@ function processDataAndDownload() {
         'k3d_config_z_hold_current',
         'k3d_config_extruder_run_current',
         'k3d_config_extruder_hold_current',
+        'k3d_config_nozzle_diameter'
     ]; // Список идентификаторов обычных полей
     var radioFieldList = [
-        'k3d_config_MCU'
+        'k3d_config_MCU',
+        'k3d_config_thermistor_bed',
+        'k3d_config_thermistor_extruder'
     ]; // Список идентификаторов полей радиокнопок
     var checkboxFieldList = [
         'k3d_config_idex',
@@ -470,3 +412,14 @@ function processDataAndDownload() {
 }
 
 document.getElementById('processButton').addEventListener('click', processDataAndDownload);
+
+var toggleCheckbox = document.getElementById('toggleTablePro');
+var tableBody = document.getElementById('tablePro');
+
+toggleCheckbox.addEventListener('change', function() {
+    if (toggleCheckbox.checked) {
+        tableBody.style.display = ''; // Показать tbody
+    } else {
+        tableBody.style.display = 'none'; // скрыть tbody
+    }
+});

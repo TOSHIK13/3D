@@ -9,6 +9,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/streamsaver@2.0.3/StreamSaver.min.js"></script>
 
+<label for="toggle">Расширенный режим:</label><input type="checkbox" id="toggleTablePro">
+
 
 <table style="width: 100%; font-size: 0.8rem;">
     <tbody>
@@ -46,14 +48,16 @@
             <td align="center">
                 <form style="text-align:left; width:fit-content;"><input type="radio" id="k3d_config_MCU_0" name="k3d_config_MCU" value="fysetc_spider"><label for="k3d_la_firmwareMarlin"> Fysetc spider</label><br>
                 <input type="radio" id="k3d_config_MCU_1" name="k3d_config_MCU" value="btt_octopus"><label for="k3d_la_firmwareKlipper"> BTT Octopus</label><br>
-                <input type="radio" id="k3d_config_MCU_2" name="k3d_config_MCU" value="btt_octopus_pro_v1.0"><label for="k3d_la_firmwareRRF"> BTT Octopus pro v1.0</label><br>
-                <input type="radio" id="k3d_config_MCU_3" name="k3d_config_MCU" value="btt_octopus_pro_v1.1" checked><label for="k3d_la_firmwareRRF"> BTT Octopus pro v1.1</label><br>
+                <input type="radio" id="k3d_config_MCU_2" name="k3d_config_MCU" value="btt_octopus_pro_v1.0" checked><label for="k3d_la_firmwareRRF"> BTT Octopus pro v1.0</label><br>
+                <input type="radio" id="k3d_config_MCU_3" name="k3d_config_MCU" value="btt_octopus_pro_v1.1"><label for="k3d_la_firmwareRRF"> BTT Octopus pro v1.1</label><br>
 				<input type="radio" id="k3d_config_MCU_4" name="k3d_config_MCU" value="btt_skr_1.4"><label for="k3d_la_firmwareRRF"> BTT SKR 1.4</label>
                 </form>
             </td>
             <td class="lang" id="table.firmware.description" style="text-align: justify;">Выберите подходящую материнскую плату</td>
         </tr>
-        <tr>
+    </tbody>
+    <tbody id="tablePro" style="display: none;">
+        <tr id="toggleRow000" class="hidden">
             <th class="lang" id="table.nozzle_diameter.title">Диаметр сопла</td>
             <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_nozzle_diameter" name="k3d_config_nozzle_diameter" value="0.4"></td>
             <td class="lang" id="table.nozzle_diameter.description" style="text-align: justify;">[мм] </td>
@@ -141,17 +145,17 @@
         </tr>
         <tr>
             <th class="lang" id="table.x_dir.title">Инвертировать X</td>
-            <td style="text-align:center"><input type="checkbox" id="k3d_config_x_dir" name="k3d_config_x_dir" checked></td>
+            <td style="text-align:center"><input type="checkbox" id="k3d_config_x_dir" name="k3d_config_x_dir"></td>
             <td class="lang" id="table.x_dir.description" style="text-align: justify;"></td>
         </tr>
         <tr>
             <th class="lang" id="table.y_dir.title">Инвертировать Y</td>
-            <td style="text-align:center"><input type="checkbox" id="k3d_config_y_dir" name="k3d_config_y_dir" checked></td>
+            <td style="text-align:center"><input type="checkbox" id="k3d_config_y_dir" name="k3d_config_y_dir"></td>
             <td class="lang" id="table.y_dir.description" style="text-align: justify;"></td>
         </tr>
         <tr>
             <th class="lang" id="table.z_dir.title">Инвертировать Z</td>
-            <td style="text-align:center"><input type="checkbox" id="k3d_config_z_dir" name="k3d_config_z_dir" checked></td>
+            <td style="text-align:center"><input type="checkbox" id="k3d_config_z_dir" name="k3d_config_z_dir"></td>
             <td class="lang" id="table.z_dir.description" style="text-align: justify;"></td>
         </tr>
         <tr>
@@ -213,6 +217,38 @@
             <th class="lang" id="table.extruder_hold_current.title">Ток удержания extruder</td>
             <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_extruder_hold_current" name="k3d_config_extruder_hold_current" value="0.5"></td>
             <td class="lang" id="table.extruder_hold_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+        <tr>
+            <th class="lang" id="k3d_config_bed_title">Термистор стола</td>
+            <td align="center">
+                <form style="text-align:left; width:fit-content;">
+				<input type="radio" id="k3d_config_thermistor_bed_0" name="k3d_config_thermistor_bed" value="EPCOS 100K B57560G104F"><label for="k3d_thermistor_bed_0"> EPCOS 100K B57560G104F</label><br>
+                <input type="radio" id="k3d_config_thermistor_bed_1" name="k3d_config_thermistor_bed" value="ATC Semitec 104GT-2" checked><label for="k3d_thermistor_bed_1"> ATC Semitec 104GT-2</label><br>
+                <input type="radio" id="k3d_config_thermistor_bed_2" name="k3d_config_thermistor_bed" value="ATC Semitec 104NT-4-R025H42G"><label for="k3d_thermistor_bed_2">ATC Semitec 104NT-4-R025H42G</label><br>
+				<input type="radio" id="k3d_config_thermistor_bed_3" name="k3d_config_thermistor_bed" value="Generic 3950"><label for="k3d_thermistor_bed_3"> Generic 3950</label><br>
+				<input type="radio" id="k3d_config_thermistor_bed_4" name="k3d_config_thermistor_bed" value="Honeywell 100K 135-104LAG-J01"><label for="k3d_thermistor_bed_4"> Honeywell 100K 135-104LAG-J01</label><br>
+				<input type="radio" id="k3d_config_thermistor_bed_5" name="k3d_config_thermistor_bed" value="NTC 100K MGB18-104F39050L32"><label for="k3d_thermistor_bed_5"> NTC 100K MGB18-104F39050L32</label><br>
+				<input type="radio" id="k3d_config_thermistor_bed_6" name="k3d_config_thermistor_bed" value="SliceEngineering 450"><label for="k3d_thermistor_bed_6"> SliceEngineering 450</label><br>
+				<input type="radio" id="k3d_config_thermistor_bed_7" name="k3d_config_thermistor_bed" value="ATC Semitec 104NT-4-R025H42G"><label for="k3d_thermistor_bed_7"> TDK NTCG104LH104JT1</label><br>
+				</form>
+            </td>
+            <td class="lang" id="table.firmware.description" style="text-align: justify;">Выберите датчик температуры стола</td>
+        </tr>
+		<tr>
+            <th class="lang" id="k3d_config_extruder_title">Термистор сопла</td>
+            <td align="center">
+                <form style="text-align:left; width:fit-content;">
+				<input type="radio" id="k3d_config_thermistor_extruder_0" name="k3d_config_thermistor_extruder" value="EPCOS 100K B57560G104F"><label for="k3d_thermistor_extruder_0"> EPCOS 100K B57560G104F</label><br>
+                <input type="radio" id="k3d_config_thermistor_extruder_1" name="k3d_config_thermistor_extruder" value="ATC Semitec 104GT-2"><label for="k3d_thermistor_extruder_1"> ATC Semitec 104GT-2</label><br>
+                <input type="radio" id="k3d_config_thermistor_extruder_2" name="k3d_config_thermistor_extruder" value="ATC Semitec 104NT-4-R025H42G" checked><label for="k3d_thermistor_extruder_2">ATC Semitec 104NT-4-R025H42G</label><br>
+				<input type="radio" id="k3d_config_thermistor_extruder_3" name="k3d_config_thermistor_extruder" value="Generic 3950"><label for="k3d_thermistor_extruder_3"> Generic 3950</label><br>
+				<input type="radio" id="k3d_config_thermistor_extruder_4" name="k3d_config_thermistor_extruder" value="Honeywell 100K 135-104LAG-J01"><label for="k3d_thermistor_extruder_4"> Honeywell 100K 135-104LAG-J01</label><br>
+				<input type="radio" id="k3d_config_thermistor_extruder_5" name="k3d_config_thermistor_extruder" value="NTC 100K MGB18-104F39050L32"><label for="k3d_thermistor_extruder_5"> NTC 100K MGB18-104F39050L32</label><br>
+				<input type="radio" id="k3d_config_thermistor_extruder_6" name="k3d_config_thermistor_extruder" value="SliceEngineering 450"><label for="k3d_thermistor_extruder_6"> SliceEngineering 450</label><br>
+				<input type="radio" id="k3d_config_thermistor_extruder_7" name="k3d_config_thermistor_extruder" value="ATC Semitec 104NT-4-R025H42G"><label for="k3d_thermistor_extruder_7"> TDK NTCG104LH104JT1</label><br>
+				</form>
+            </td>
+            <td class="lang" id="table.firmware.description" style="text-align: justify;">Выберите датчик температуры сопла</td>
         </tr>
     </tbody>
 </table>
