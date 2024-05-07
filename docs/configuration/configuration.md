@@ -46,8 +46,9 @@
             <td align="center">
                 <form style="text-align:left; width:fit-content;"><input type="radio" id="k3d_config_MCU_0" name="k3d_config_MCU" value="fysetc_spider"><label for="k3d_la_firmwareMarlin"> Fysetc spider</label><br>
                 <input type="radio" id="k3d_config_MCU_1" name="k3d_config_MCU" value="btt_octopus"><label for="k3d_la_firmwareKlipper"> BTT Octopus</label><br>
-                <input type="radio" id="k3d_config_MCU_2" name="k3d_config_MCU" value="btt_octopus_pro" checked><label for="k3d_la_firmwareRRF"> BTT Octopus pro</label><br>
-				<input type="radio" id="k3d_config_MCU_2" name="k3d_config_MCU" value="btt_skr_1.4"><label for="k3d_la_firmwareRRF"> BTT SKR 1.4</label>
+                <input type="radio" id="k3d_config_MCU_2" name="k3d_config_MCU" value="btt_octopus_pro_v1.0"><label for="k3d_la_firmwareRRF"> BTT Octopus pro v1.0</label><br>
+                <input type="radio" id="k3d_config_MCU_3" name="k3d_config_MCU" value="btt_octopus_pro_v1.1" checked><label for="k3d_la_firmwareRRF"> BTT Octopus pro v1.1</label><br>
+				<input type="radio" id="k3d_config_MCU_4" name="k3d_config_MCU" value="btt_skr_1.4"><label for="k3d_la_firmwareRRF"> BTT SKR 1.4</label>
                 </form>
             </td>
             <td class="lang" id="table.firmware.description" style="text-align: justify;">Выберите подходящую материнскую плату</td>
