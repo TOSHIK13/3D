@@ -246,6 +246,7 @@ stealthchop_threshold: 999999
 // Функция создания текстового содержимого файла
 function createFileContent(data) {
     console.log("Все данные:", data);
+    console.log("mcu:", config_mcu);
     var included = `
 ################################################################################
 #   Included configs
