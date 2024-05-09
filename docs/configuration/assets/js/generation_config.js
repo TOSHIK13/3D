@@ -164,8 +164,8 @@ function creatSteppers(data, motor, axis, main = true, extruder=false, exid = ''
         step.run_current = data[`x_run_current`];
         step.hold_current = data[`x_hold_current`];
         step.position_min = '0';
-        step.position_max = data.size_x;
-        step.position_endstop = data.size_x;
+        step.position_max = data[`${axis}_position_max`];
+        step.dir_pin = invert(step.dir_pin);
         step.name_step = `[${step.axis}]
 axis: x
 safe_distance: 52`;
@@ -174,7 +174,6 @@ safe_distance: 52`;
     if (axis === 'y1'){
         step.dir_pin = invert(step.dir_pin);
     };
-
 
     var text_step1 = `
 #Motor${step.id}
@@ -209,7 +208,7 @@ stealthchop_threshold: 999999`;
 #Motor${step.id}
 [${step.axis}]
 step_pin: ${step.step_pin}
-dir_pin: ${step.dir}${step.dir_pin} # напрвление вращения
+dir_pin: ${step.dir_pin}  # напрвление вращения
 enable_pin: ${step.enable_pin}
 rotation_distance: ${step.rotation_distance}
 microsteps: ${step.microsteps}
@@ -371,6 +370,8 @@ function processDataAndDownload() {
         'k3d_config_y_position_endstop',
         'k3d_config_z_position_min',
         'k3d_config_z_position_endstop',
+        'k3d_config_dual_carriage_position_max',
+        'k3d_config_dual_carriage_position_endstop',
         'k3d_config_size_x',
         'k3d_config_size_y',
         'k3d_config_size_z',
@@ -399,6 +400,7 @@ function processDataAndDownload() {
         'k3d_config_x_dir',
         'k3d_config_y_dir',
         'k3d_config_z_dir',
+        'k3d_config_extruder_dir',
     ]; // Список идентификаторов полей чекбоксов
 
     var formData = collectDataFromFields(fieldList);
