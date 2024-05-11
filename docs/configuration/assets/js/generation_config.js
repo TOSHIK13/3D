@@ -68,6 +68,89 @@ var config_mcu = {
 	heb: 'PA1',
 	he0: 'PA2',
 	he1: 'PA3',
+	he2: 'PB10',
+	he3: 'PB11',
+	tb: 'PF3',
+	t0: 'PF4',
+	t1: 'PF5',
+	t2: 'PF6',
+	t3: 'PF7',
+	fan0: 'PA8',
+	fan1: 'PE5',
+	fan2: 'PD12',
+	fan3: 'PD13',
+	fan4: 'PD14',
+	fan5: 'PD15',
+  },
+    'btt_octopus_pro_v1.1': {
+    docs: 'https://github.com/bigtreetech/BIGTREETECH-OCTOPUS-Pro',
+	motor0: {
+      id: '0',
+      step_pin: 'PF13',
+      dir_pin: 'PF12',
+      enable_pin: '!PF14',
+      endstop_pin: '!PG6',
+      uart_pin: 'PC4'
+    },
+    motor1: {
+      id: '1',
+      step_pin: 'PG0',
+      dir_pin: 'PG1',
+      enable_pin: '!PF15',
+      endstop_pin: '!PG9',
+      uart_pin: 'PD11'
+    },
+    motor2: {
+      id: '2',
+      step_pin: 'PF11',
+      dir_pin: 'PG3',
+      enable_pin: '!PG5',
+      endstop_pin: '!PG10',
+      uart_pin: 'PC6'
+    },
+    motor3: {
+      id: '3',
+      step_pin: 'PG4',
+      dir_pin: 'PC1',
+      enable_pin: '!PA2',
+      endstop_pin: 'PG11',
+      uart_pin: 'PC7'
+    },
+    motor4: {
+      id: '4',
+      step_pin: 'PF9',
+      dir_pin: 'PF10',
+      enable_pin: '!PG2',
+      endstop_pin: 'PG12',
+      uart_pin: 'PF2'
+    },
+    motor5: {
+      id: '5',
+      step_pin: 'PC13',
+      dir_pin: 'PF0',
+      enable_pin: '!PF1',
+      endstop_pin: 'PG13',
+      uart_pin: 'PE4'
+    },
+    motor6: {
+      id: '6',
+      step_pin: 'PE2',
+      dir_pin: 'PE3',
+      enable_pin: '!PD4',
+      endstop_pin: '!PG14',
+      uart_pin: 'PE1'
+    },
+    motor7: {
+      id: '7',
+      step_pin: 'PE6',
+      dir_pin: 'PA14',
+      enable_pin: '!PE0',
+      endstop_pin: 'PG15',
+      uart_pin: 'PD3'
+    },
+	heb: 'PA1',
+	he0: 'PA0',
+	he1: 'PA3',
 	he2: 'PB0',
 	he3: 'PB11',
 	tb: 'PF3',
