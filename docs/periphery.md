@@ -1,16 +1,20 @@
 # Установка акселерометра
+!!! info
+
+    Команды в заголовке которых указано `Linux` выполняются в консоле PuTTY, при указании `Klipper` выполняются через консоль веб интерфейса.
+
 ## Настройка Raspberry
 
 Для использования GPIO портов и шин i2c, spi управляющей платы необходима дополнительная настройка.
 
-Устанавливаем скрипт
-```
+Копируем скрипт командой
+```cmd title='Linux'
 cd ~/klipper/
 sudo cp ./scripts/klipper-mcu.service /etc/systemd/system/
 sudo systemctl enable klipper-mcu.service
 ```
 Запускаем меню конфигурации для Управляющей платы
-```
+```cmd title='Linux'
 cd ~/klipper/
 make menuconfig
 ```
@@ -21,7 +25,7 @@ make menuconfig
 Выходим и сохраняем `Q`
 
 Затем устанавливаем скомпилированный код
-```
+```cmd title='Linux'
 sudo service klipper stop
 make flash
 sudo service klipper start
@@ -32,13 +36,17 @@ sudo service klipper start
 Шина SPI используется для подключения акселерометра
 
 * Запускаем конфигуратор управляющей платы
-```
+```cmd title='Linux'
 sudo raspi-config
 ```
 * Переходим в раздел `Interface Options`
+
 ![Screenshot](img/RPi_Configurator_SPI_1.png)
+
 * Выбираем интерфейс `SPI`
+
 ![Screenshot](img/RPi_Configurator_SPI_2.png)
+
 * Соглашаемся с активацией 
 
 ![Screenshot](img/RPi_Configurator_SPI_3.png)
@@ -50,11 +58,11 @@ sudo raspi-config
 
 
 Устанавливаем необходимые библиотеки
-```shell
+```cmd title='Linux'
 ~/klippy-env/bin/pip install -v numpy
 ```
 Устанавливаем дополнительные зависимости
-```shell
+```cmd title='Linux'
 sudo apt update
 sudo apt install python3-numpy python3-matplotlib libatlas-base-dev libopenblas-dev
 ```
@@ -95,7 +103,7 @@ probe_points:
 
 ## Проверка акселерометра
 Для проверки работы акселерометра можно получить его текущие значения. Для это нужно запустить команду `ACCELEROMETER_QUERY [CHIP=<config_name>]` в консоли веб интерфейса. Для стандартного названия акселерометра запустите
-```
+``` title='Klipper'
 ACCELEROMETER_QUERY
 ```
 Измерить шум датчиков можно командой `MEASURE_AXES_NOISE` нормальными считаются значения до 100.
