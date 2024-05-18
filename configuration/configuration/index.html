@@ -1,0 +1,944 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://toshik13.github.io/3D/configuration/configuration/">
+      
+      
+        <link rel="prev" href="../../shaper/">
+      
+      
+        <link rel="next" href="../configurator_instructions/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.23">
+    
+    
+      
+        <title>Создание конфига - Manual VOSTOK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra4.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Manual VOSTOK" class="md-header__button md-logo" aria-label="Manual VOSTOK" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Manual VOSTOK
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Создание конфига
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../get/" class="md-tabs__link">
+        
+  
+    
+  
+  Создание таблицы
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../klipper/" class="md-tabs__link">
+        
+  
+    
+  
+  Установка Klipper
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/" class="md-tabs__link">
+        
+  
+    
+  
+  Установка операционной системы Linux
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../periphery/" class="md-tabs__link">
+        
+  
+    
+  
+  Установка акселерометра по SPI
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../shaper/" class="md-tabs__link">
+        
+  
+    
+  
+  Измерение резонансов
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Configuration
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Manual VOSTOK" class="md-nav__button md-logo" aria-label="Manual VOSTOK" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Manual VOSTOK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../get/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Создание таблицы
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../klipper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Установка Klipper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Установка операционной системы Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../periphery/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Установка акселерометра по SPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shaper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Измерение резонансов
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Создание конфига
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configurator_instructions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Инструкция для конфигурации
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">Создание конфига</h1>
+<script src="https://cdn.jsdelivr.net/npm/streamsaver@2.0.3/StreamSaver.min.js"></script>
+
+<p><label for="toggle">Расширенный режим:</label><input type="checkbox" id="toggleTablePro"></p>
+<table style="width: 100%; font-size: 0.8rem;">
+    <tbody>
+        <tr>
+            <td colspan="3" style="text-align:center">Основные настройки</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.serial.title">Адрес MCU</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_mcu_serial" name="k3d_config_mcu_serial" value="/dev/serial/by-id/usb-Klipper_stm32f429xx_3F0039000950314B33323220-if00"></td>
+            <td class="lang" id="table.serial.description" style="text-align: justify;">Адрес можно узнать в консоле Линукса <code>ls /dev/serial/by-id</code></td>
+        </tr>
+        </tr>
+            <tr>
+            <th class="lang" id="table.size_x.title">Область печати по X</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_size_x" name="k3d_config_size_x" value="400"></td>
+            <td class="lang" id="table.size_x.description" style="text-align: justify;">[мм] Область печати по оси X </td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.size_y.title">Область печати по Y</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_size_y" name="k3d_config_size_y" value="250"></td>
+            <td class="lang" id="table.size_y.description" style="text-align: justify;">[мм] Область печати по оси Y</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.size_z.title">Область печати по Z</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_size_z" name="k3d_config_size_z" value="300"></td>
+            <td class="lang" id="table.size_z.description" style="text-align: justify;">[мм] Область печати по оси Z</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.idex.title">Количество экструдеров</td>
+            <td style="text-align:center"><input type="checkbox" id="k3d_config_idex" name="k3d_config_idex" checked></td>
+            <td class="lang" id="table.idex.description" style="text-align: justify;">Выключено - обычный одиночный экструдер <br>Включено - IDEX (две независимые печатающие головы)</td>
+        </tr>
+        <tr>
+            <th class="lang" id="k3d_config_MCU">Материнская плата</td>
+            <td align="center">
+                <form style="text-align:left; width:fit-content;"><input type="radio" id="k3d_config_MCU_0" name="k3d_config_MCU" value="fysetc_spider"><label for="k3d_la_firmwareMarlin"> Fysetc spider</label><br>
+                <input type="radio" id="k3d_config_MCU_1" name="k3d_config_MCU" value="btt_octopus"><label for="k3d_la_firmwareKlipper"> BTT Octopus</label><br>
+                <input type="radio" id="k3d_config_MCU_2" name="k3d_config_MCU" value="btt_octopus_pro_v1.0" checked><label for="k3d_la_firmwareRRF"> BTT Octopus pro v1.0</label><br>
+                <input type="radio" id="k3d_config_MCU_3" name="k3d_config_MCU" value="btt_octopus_pro_v1.1"><label for="k3d_la_firmwareRRF"> BTT Octopus pro v1.1</label><br>
+                <input type="radio" id="k3d_config_MCU_4" name="k3d_config_MCU" value="btt_skr_1.4"><label for="k3d_la_firmwareRRF"> BTT SKR 1.4</label>
+                </form>
+            </td>
+            <td class="lang" id="table.firmware.description" style="text-align: justify;">Выберите подходящую материнскую плату</td>
+        </tr>
+    </tbody>
+    <tbody id="tablePro" style="display: none;">
+        <tr>
+            <td colspan="3" style="text-align:center">Настройки направления и положения осей</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.x_dir.title">Инвертировать X</td>
+            <td style="text-align:center"><input type="checkbox" id="k3d_config_x_dir" name="k3d_config_x_dir" checked></td>
+            <td class="lang" id="table.x_dir.description" style="text-align: justify;"></td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.y_dir.title">Инвертировать Y</td>
+            <td style="text-align:center"><input type="checkbox" id="k3d_config_y_dir" name="k3d_config_y_dir" checked></td>
+            <td class="lang" id="table.y_dir.description" style="text-align: justify;"></td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.z_dir.title">Инвертировать Z</td>
+            <td style="text-align:center"><input type="checkbox" id="k3d_config_z_dir" name="k3d_config_z_dir" checked></td>
+            <td class="lang" id="table.z_dir.description" style="text-align: justify;"></td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.extruder_dir.title">Инвертировать E</td>
+            <td style="text-align:center"><input type="checkbox" id="k3d_config_extruder_dir" name="k3d_config_extruder_dir"></td>
+            <td class="lang" id="table.extruder_dir.description" style="text-align: justify;"></td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.x_position_min.title">X position_min</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_x_position_min" name="k3d_config_x_position_min" value="-0.01"></td>
+            <td class="lang" id="table.x_position_min.description" style="text-align: justify;">[мм] Минимальное положение по оси X</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.x_position_endstop.title">Х position_endstop</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_x_position_endstop" name="k3d_config_x_position_endstop" value="0"></td>
+            <td class="lang" id="table.x_position_endstop.description" style="text-align: justify;">[мм] Положения концевика оси Х</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.y_position_min.title">Y position_min</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_y_position_min" name="k3d_config_y_position_min" value="-0.01"></td>
+            <td class="lang" id="table.y_position_min.description" style="text-align: justify;">[мм] Минимальное положение по оси Y</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.y_position_endstop.title">Y position_endstop</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_y_position_endstop" name="k3d_config_y_position_endstop" value="0"></td>
+            <td class="lang" id="table.y_position_endstop.description" style="text-align: justify;">[мм] Положения концевика оси Y</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.z_position_min.title">Z position_min</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_position_min" name="k3d_config_z_position_min" value="-0.01"></td>
+            <td class="lang" id="table.z_position_min.description" style="text-align: justify;">[мм] Минимальное положение по оси Z</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.z_position_endstop.title">Z position_endstop</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_position_endstop" name="k3d_config_z_position_endstop" value="0"></td>
+            <td class="lang" id="table.z_position_endstop.description" style="text-align: justify;">[мм] Положения концевика оси Z</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.dual_carriage_position_max.title">U position_max</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_dual_carriage_position_max" name="k3d_config_dual_carriage_position_max" value="400.01"></td>
+            <td class="lang" id="table.dual_carriage_position_max.description" style="text-align: justify;">[мм] Максимальное положение по оси dual_carriage</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.dual_carriage_position_endstop.title">U position_endstop</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_dual_carriage_position_endstop" name="k3d_config_dual_carriage_position_endstop" value="400"></td>
+            <td class="lang" id="table.dual_carriage_position_endstop.description" style="text-align: justify;">[мм] Положения концевика оси dual_carriage</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align:center">Настройки скорости и ускорения</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.max_velocity.title">max_velocity</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_max_velocity" name="k3d_config_max_velocity" value="250"></td>
+            <td class="lang" id="table.max_velocity.description" style="text-align: justify;">[мм/с] Максимальная скорость по осям X и Y</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.max_accel.title">max_accel</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_max_accel" name="k3d_config_max_accel" value="10000"></td>
+            <td class="lang" id="table.max_accel.description" style="text-align: justify;">[мм/с<sup>2</sup>] Максимальное ускорение по осям X и Y</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.max_z_velocity.title">max_z_velocity</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_max_z_velocity" name="k3d_config_max_z_velocity" value="5"></td>
+            <td class="lang" id="table.max_z_velocity.description" style="text-align: justify;">[мм/с] Максимальная скорость Z</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.max_z_accel.title">max_z_accel</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_max_z_accel" name="k3d_config_max_z_accel" value="100"></td>
+            <td class="lang" id="table.max_z_accel.description" style="text-align: justify;">[мм/с<sup>2</sup>] Максимальное ускорение Z</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align:center">Настройки двигателей</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.x_run_current.title">Ток двигателя X</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_x_run_current" name="k3d_config_x_run_current" value="0.7"></td>
+            <td class="lang" id="table.x_run_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+            <tr>
+            <th class="lang" id="table.x_hold_current.title">Ток удержания X</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_x_hold_current" name="k3d_config_x_hold_current" value="0.5"></td>
+            <td class="lang" id="table.x_hold_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.y_run_current.title">Ток двигателя Y</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_y_run_current" name="k3d_config_y_run_current" value="0.7"></td>
+            <td class="lang" id="table.y_run_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+            <tr>
+            <th class="lang" id="table.y_hold_current.title">Ток удержания Y</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_y_hold_current" name="k3d_config_y_hold_current" value="0.5"></td>
+            <td class="lang" id="table.y_hold_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.z_run_current.title">Ток двигателя Z</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_run_current" name="k3d_config_z_run_current" value="0.7"></td>
+            <td class="lang" id="table.z_run_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+            <tr>
+            <th class="lang" id="table.z_hold_current.title">Ток удержания Z</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_hold_current" name="k3d_config_z_hold_current" value="0.5"></td>
+            <td class="lang" id="table.z_hold_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.extruder_run_current.title">Ток двигателя extruder</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_extruder_run_current" name="k3d_config_extruder_run_current" value="0.7"></td>
+            <td class="lang" id="table.extruder_run_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+            <tr>
+            <th class="lang" id="table.extruder_hold_current.title">Ток удержания extruder</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_extruder_hold_current" name="k3d_config_extruder_hold_current" value="0.5"></td>
+            <td class="lang" id="table.extruder_hold_current.description" style="text-align: justify;">[А]</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align:center">Настройки кинематика</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.kinematics.title">kinematics</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_kinematics" name="k3d_config_kinematics" value="cartesian"></td>
+            <td class="lang" id="table.kinematics.description" style="text-align: justify;">Для Востока основная кинематика <i>cartesian</i></td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.x_rotation_distance.title">rotation_distance x</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_x_rotation_distance" name="k3d_config_x_rotation_distance" value="20"></td>
+            <td class="lang" id="table.x_rotation_distance.description" style="text-align: justify;">[мм/об] Расстояние на которое перемещается ось X за один оборот. Для 20 зубого шкива = 20, для 40 зубого = </td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.y_rotation_distance.title">rotation_distance y</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_y_rotation_distance" name="k3d_config_y_rotation_distance" value="40"></td>
+            <td class="lang" id="table.y_rotation_distance.description" style="text-align: justify;">[мм/об] Расстояние на которое перемещается ось Y за один оборот.</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.z_rotation_distance.title">rotation_distance z</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_z_rotation_distance" name="k3d_config_z_rotation_distance" value="2"></td>
+            <td class="lang" id="table.z_rotation_distance.description" style="text-align: justify;">[мм/об] Расстояние на которое перемещается ось Z за один оборот. Однозаходный = 2, двухзаходный = 4, четырехзаходный = 8</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.extruder_rotation_distance.title">rotation_distance e</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_extruder_rotation_distance" name="k3d_config_extruder_rotation_distance" value="4.575"></td>
+            <td class="lang" id="table.extruder_rotation_distance.description" style="text-align: justify;">[мм/об] Расстояние на которое перемещается пруток за один оборот</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align:center">Прочее настройки</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.minimum_cruise_ratio.title">minimum_cruise_ratio</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_minimum_cruise_ratio" name="k3d_config_minimum_cruise_ratio" value="0.5"></td>
+            <td class="lang" id="table.minimum_cruise_ratio.description" style="text-align: justify;">Коэф. достижения скорости. Снижение вибраций при малых расстояния перемещения за счет снижения максимальной скорости</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.square_corner_velocity.title">square_corner_velocity</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_square_corner_velocity" name="k3d_config_square_corner_velocity" value="5"></td>
+            <td class="lang" id="table.square_corner_velocity.description" style="text-align: justify;">[мм/с] Максимальная скорость при прохождении угла в 90°</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.delta.title">force_move</td>
+            <td style="text-align:center"><input type="checkbox" id="k3d_config_enable_force_move" name="k3d_config_enable_force_move" checked></td>
+            <td class="lang" id="table.delta.description" style="text-align: justify;">Перемещение без парковки. Необходимо для макросов и диагностики</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.nozzle_diameter.title">nozzle_diameter</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_nozzle_diameter" name="k3d_config_nozzle_diameter" value="0.4"></td>
+            <td class="lang" id="table.nozzle_diameter.description" style="text-align: justify;">[мм] Диаметр сопла</td>
+        </tr>
+        <tr>
+            <th class="lang" id="k3d_config_bed_title">Термистор стола</td>
+            <td align="center">
+                <form style="text-align:left; width:fit-content;">
+                <input type="radio" id="k3d_config_thermistor_bed_0" name="k3d_config_thermistor_bed" value="EPCOS 100K B57560G104F"><label for="k3d_thermistor_bed_0"> EPCOS 100K B57560G104F</label><br>
+                <input type="radio" id="k3d_config_thermistor_bed_1" name="k3d_config_thermistor_bed" value="ATC Semitec 104GT-2" checked><label for="k3d_thermistor_bed_1"> ATC Semitec 104GT-2</label><br>
+                <input type="radio" id="k3d_config_thermistor_bed_2" name="k3d_config_thermistor_bed" value="ATC Semitec 104NT-4-R025H42G"><label for="k3d_thermistor_bed_2">ATC Semitec 104NT-4-R025H42G</label><br>
+                <input type="radio" id="k3d_config_thermistor_bed_3" name="k3d_config_thermistor_bed" value="Generic 3950"><label for="k3d_thermistor_bed_3"> Generic 3950</label><br>
+                <input type="radio" id="k3d_config_thermistor_bed_4" name="k3d_config_thermistor_bed" value="Honeywell 100K 135-104LAG-J01"><label for="k3d_thermistor_bed_4"> Honeywell 100K 135-104LAG-J01</label><br>
+                <input type="radio" id="k3d_config_thermistor_bed_5" name="k3d_config_thermistor_bed" value="NTC 100K MGB18-104F39050L32"><label for="k3d_thermistor_bed_5"> NTC 100K MGB18-104F39050L32</label><br>
+                <input type="radio" id="k3d_config_thermistor_bed_6" name="k3d_config_thermistor_bed" value="SliceEngineering 450"><label for="k3d_thermistor_bed_6"> SliceEngineering 450</label><br>
+                <input type="radio" id="k3d_config_thermistor_bed_7" name="k3d_config_thermistor_bed" value="ATC Semitec 104NT-4-R025H42G"><label for="k3d_thermistor_bed_7"> TDK NTCG104LH104JT1</label><br>
+                </form>
+            </td>
+            <td class="lang" id="table.firmware.description" style="text-align: justify;">Выберите датчик температуры стола</td>
+        </tr>
+        <tr>
+            <th class="lang" id="k3d_config_extruder_title">Термистор сопла</td>
+            <td align="center">
+                <form style="text-align:left; width:fit-content;">
+                <input type="radio" id="k3d_config_thermistor_extruder_0" name="k3d_config_thermistor_extruder" value="EPCOS 100K B57560G104F"><label for="k3d_thermistor_extruder_0"> EPCOS 100K B57560G104F</label><br>
+                <input type="radio" id="k3d_config_thermistor_extruder_1" name="k3d_config_thermistor_extruder" value="ATC Semitec 104GT-2"><label for="k3d_thermistor_extruder_1"> ATC Semitec 104GT-2</label><br>
+                <input type="radio" id="k3d_config_thermistor_extruder_2" name="k3d_config_thermistor_extruder" value="ATC Semitec 104NT-4-R025H42G" checked><label for="k3d_thermistor_extruder_2">ATC Semitec 104NT-4-R025H42G</label><br>
+                <input type="radio" id="k3d_config_thermistor_extruder_3" name="k3d_config_thermistor_extruder" value="Generic 3950"><label for="k3d_thermistor_extruder_3"> Generic 3950</label><br>
+                <input type="radio" id="k3d_config_thermistor_extruder_4" name="k3d_config_thermistor_extruder" value="Honeywell 100K 135-104LAG-J01"><label for="k3d_thermistor_extruder_4"> Honeywell 100K 135-104LAG-J01</label><br>
+                <input type="radio" id="k3d_config_thermistor_extruder_5" name="k3d_config_thermistor_extruder" value="NTC 100K MGB18-104F39050L32"><label for="k3d_thermistor_extruder_5"> NTC 100K MGB18-104F39050L32</label><br>
+                <input type="radio" id="k3d_config_thermistor_extruder_6" name="k3d_config_thermistor_extruder" value="SliceEngineering 450"><label for="k3d_thermistor_extruder_6"> SliceEngineering 450</label><br>
+                <input type="radio" id="k3d_config_thermistor_extruder_7" name="k3d_config_thermistor_extruder" value="ATC Semitec 104NT-4-R025H42G"><label for="k3d_thermistor_extruder_7"> TDK NTCG104LH104JT1</label><br>
+                </form>
+            </td>
+            <td class="lang" id="table.firmware.description" style="text-align: justify;">Выберите датчик температуры сопла</td>
+        </tr>
+        <tr>
+            <th class="lang" id="table.bed_size_x.title">устарел</td>
+            <td style="text-align:center"><input class="calibratorInput" type="text" id="k3d_config_max_accel_to_decel" name="k3d_config_max_accel_to_decel" value="5000"></td>
+            <td class="lang" id="table.bed_size_x.description" style="text-align: justify;">[мм/с<sup>2</sup>] max_accel_to_decel</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="caliButtonTable">
+    <tbody>
+        <tr>
+            <td align="right" width="50%">
+                <button class="caliButton" type="button" id="processButton">Скачать </button>
+            </td>
+            <td align="left" width="50%">
+                <button class="caliButton" onclick="reset();" id="resetButton"> Сбросить настройки</button>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">
+                <br><div id="resultContainer"></div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script src="../assets/js/generation_config.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024 <a href="https://github.com/TOSHIK13"  target="_blank" rel="noopener">TOSHIK13</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/TOSHIK13" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/k3d_vostok" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "navigation.tabs.sticky", "content.tooltips"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ebd0bdb7.min.js"></script>
+      
+    
+  </body>
+</html>
