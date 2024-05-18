@@ -25,7 +25,13 @@
 
 ## Добавление макроса и скрипта в конфигурационный файл
 
-<a href="/3D/shaper.zip" download="shaper.zip">Скачать архив</a>
+<a href="/3D/shaper pi.zip" download="shaper pi.zip">Скачать архив для пользователя pi</a>
+
+<a href="/3D/shaper klipper.zip" download="shaper klipper.zip">Скачать архив для пользователя klipper</a>
+
+!!! warning
+
+    В случае если имя пользователя Linux отличаетя от `pi` или `klipper` необходимо будет изменить адрес в файлах.
 
 Добавьте в папку с конфигурацией папку `shaper` в которой должны находится файл макроса `ADXL_SHAPER.cfg` и файл скрипта `adxl_shape.sh`
 
@@ -33,9 +39,7 @@
 
 Добавьте строку `[include shaper/ADXL_SHAPER.cfg]` в `print.cfg` для работы макроса
 
-!!! warning
 
-    В случае если имя пользователя Linux отличаетя от `pi` необходимо будет изменить адрес в файлах.
 
 ## Использование
 
