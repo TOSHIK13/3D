@@ -91,13 +91,13 @@ make
 Если все прошло успешно, putty в консоли сообщит:
 
 ```
-Version: v0.9.1-142-g02ece242-20210113_003503-fluiddpi
+Version: v0.12.0-180-g79930ed9
   Preprocessing out/src/generic/armcm_link.ld
   Linking out/klipper.elf
   Creating hex file out/klipper.bin
 ```
 
-Это означает что прошивка скомпилировалась и находится в папке `/home/pi/klipper/out/klipper.bin`
+Это означает что прошивка скомпилировалась и находится по адресу `/home/pi/klipper/out/klipper.bin`
 
 
 ### Установка прошивки
@@ -133,21 +133,67 @@ Version: v0.9.1-142-g02ece242-20210113_003503-fluiddpi
       * НЕ требует SD-карты
     
     
-    * Отключаем питание материнской платы
-      * Устанавливаем перемычку BOOT0
+    * Шаг 1: Отключаем питание материнской платы
+      * Шаг 2: Устанавливаем перемычку BOOT0
       ![Screenshot](img/Board_octopus_pins2.png)
       * Подключаем материнскую к управляющей плате
       * Подключаем питание материнской платы
-      * Находим идентификатор устройства. Обычно устройство называется `STM Device in DFU mode`.
+      * Шаг 3: Находим идентификатор устройства. Обычно устройство называется `STM Device in DFU mode`.
     ``` cmd title='Linux'
     cd ~/klipper
     lsusb
     ```
+    Пример вывода:
+    ``` hl_lines="4"
+    Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+    Bus 001 Device 005: ID 1b3f:2247 Generalplus Technology Inc. GENERAL WEBCAM
+    Bus 001 Device 014: ID 1bcf:2286 Sunplus Innovation Technology Inc. FHD Camera
+    Bus 001 Device 034: ID 0483:df11 STMicroelectronics STM Device in DFU Mode
+    Bus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub
+    Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+    ```
+    пример без перемычки boot
+    ``` hl_lines="4"
+    Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+    Bus 001 Device 005: ID 1b3f:2247 Generalplus Technology Inc. GENERAL WEBCAM
+    Bus 001 Device 014: ID 1bcf:2286 Sunplus Innovation Technology Inc. FHD Camera
+    Bus 001 Device 037: ID 1d50:614e OpenMoko, Inc. stm32f429xx
+    Bus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub
+    Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+    ```
     
-    * Если вы не видите устройство DFU в списке, нажмите кнопку `Reset` рядом с разъемом USB и запустите `lsusb` еще раз.
-      * Введите `make flash FLASH_DEVICE=1234:5678`, заменив `1234: 5678` идентификатором из предыдущего шага. Обратите внимание, что идентификатор представлен в шестнадцатеричной форме; он содержит только цифры `0-9` и буквы `A-F`.
-      * Отключаем питание материнской платы и снимаем перемычку BOOT
-      * Включаем питание материнской платы
+    !!! question
+        
+        Если вы не видите устройство DFU в списке, нажмите кнопку `Reset` рядом с разъемом USB и запустите `lsusb` еще раз.
+    * Шаг 4: Введите `make flash FLASH_DEVICE=1234:5678`, заменив `1234: 5678` идентификатором из предыдущего шага. Обратите внимание, что идентификатор представлен в шестнадцатеричной форме; он содержит только цифры `0-9` и буквы `A-F`.
+    ??? question "Error 255"
+
+        Проверте через веб интерфейс возможно прошивка установлена и нужно снять перемычку для дальнейшей работы
+        ``` 
+        File downloaded successfully
+        Submitting leave request...
+        Transitioning to dfuMANIFEST state
+        dfu-util: can't detach
+        Resetting USB to switch back to Run-Time mode
+        
+        Failed to flash to 0483:df11: Error running dfu-util
+        
+        If the device is already in bootloader mode it can be flashed with the
+        following command:
+          make flash FLASH_DEVICE=0483:df11
+          OR
+          make flash FLASH_DEVICE=1209:beba
+        
+        If attempting to flash via 3.3V serial, then use:
+          make serialflash FLASH_DEVICE=0483:df11
+        
+        make: *** [src/stm32/Makefile:111: flash] Error 255
+        ```
+
+    * Шаг 5: Отключаем питание материнской платы и снимаем перемычку BOOT
+    * Включаем питание материнской платы
 
 Вводим команду для определения адреса платы. Данный адрес в дальнейшем указывается в разделе `mcu` конфигурационного файла klipper, сохраните его.
 ``` cmd title='Linux'
@@ -159,9 +205,13 @@ ls /dev/serial/by-id
 
 Пример вывода консоли:
 
-![Screenshot](img/MCU_id.png)
+``` hl_lines="2"
+pi@vostok:/ $ ls /dev/serial/by-id
+usb-Klipper_stm32f429xx_3F0039000950314B33323220-if00
 
-Пример раздела конфигурационного файла:
+```
+
+Пример раздела конфигурационного файла (необходимо указать свой адрес полученный выше):
 ``` cfg title='printer.cfg'
 [mcu]
 serial: /dev/serial/by-id/usb-Klipper_stm32f429xx_3F0039000950314B33323220-if00
